@@ -4,14 +4,29 @@ import java.util.Scanner;
 
 public class Poker24 {
     private static int COUNT = 4; //抽取的扑克牌数量
-    private static double[] number = new double[COUNT]; //扑克牌的数组 number=[1,5,5,5]
-    private static String[] expression = new String[COUNT]; //表达式数组
+    private  double[] number = new double[COUNT]; //扑克牌的数组 number=[1,5,5,5]
+    private  String[] expression = new String[COUNT]; //表达式数组
 
-    public static boolean checkCondition(int n){ //n=4
+    public String finalExp;
+
+    public int getCOUNT() {
+        return COUNT;
+    }
+    public Poker24(String numbers) {
+        String[] temp = numbers.split("\\s+");
+        int i = 0;
+        for(String n: temp){
+            number[i] = Double.parseDouble(n);
+            expression[i] = n;
+            i++;
+
+        }
+    }
+    public boolean checkCondition(int n){ //n=4
         //当递归到只有一个数时，判断是否满足条件
         if(n == 1){
             if(number[0] == 24){
-                System.out.println(expression[0].substring(1, expression[0].length()-1));
+                this.finalExp = expression[0].substring(1, expression[0].length()-1);
                 return true;
             }
             else
@@ -64,20 +79,5 @@ public class Poker24 {
             }
         }
         return false;
-    }
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("请输入1-13中"+COUNT+"个正整数");
-        for (int i = 0; i < COUNT; i++) {
-            number[i] = scanner.nextInt();
-            int x;
-            x = (int)number[i];
-            expression[i] = String.valueOf(x);
-        } //number=[1,5,5,5]
-        if(checkCondition(COUNT))
-            System.out.println("yes");
-        else
-            System.out.println("no");
     }
 }
