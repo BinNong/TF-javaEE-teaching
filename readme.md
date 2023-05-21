@@ -1,4 +1,4 @@
-# Java EE课程
+# Java EE程序设计实践
 
 ## 课程简介:deciduous_tree:
 
